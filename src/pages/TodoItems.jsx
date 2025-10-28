@@ -34,7 +34,7 @@ function TodoItems() {
     }
 
     // derive filtered list from source (todos_items) and inputs
-    const itemsAfterCheckedFilter = useMemo(() => {
+    let itemsAfterCheckedFilter = useMemo(() => {
         if (!Array.isArray(todos_items)) return [];
         if (checked === null || checked === "all") return todos_items;
         if (checked === "true") return todos_items.filter(i => i.checked === true);
@@ -44,14 +44,19 @@ function TodoItems() {
 
     const filteredTodos = useMemo(() => {
         if (!itemInput || itemInput.trim() === "") return itemsAfterCheckedFilter;
-        let q = itemInput.trim().toLowerCase();
 
-        if (itemInput.startsWith("#") && itemInput.length > 2) {
-            q = q.slice(1);
-            return itemsAfterCheckedFilter.filter(todo => todo?.tags ? (todo.tags.some((tag) => tag.toLowerCase().includes(q))): false);
-        }
+        let searchWords = itemInput.trim().toLowerCase().split(" ");
+        // search multiple words & tags
+        searchWords.forEach((elem) => {
+            if (elem.startsWith("#") && elem.length > 2) {
+                elem = elem.slice(1);
+                itemsAfterCheckedFilter = itemsAfterCheckedFilter.filter(todo => todo?.tags ? (todo.tags.some((tag) => tag.toLowerCase().includes(elem))): false);
+            } else {
+                itemsAfterCheckedFilter = itemsAfterCheckedFilter.filter(todo => (todo.name || "").toLowerCase().includes(elem))
+            }
+        });
 
-        return itemsAfterCheckedFilter.filter(todo => (todo.name || "").toLowerCase().startsWith(q));
+        return itemsAfterCheckedFilter;
     }, [itemsAfterCheckedFilter, itemInput]);
 
     if (isLoading || isLoadingItems) return (<Spinner/>);

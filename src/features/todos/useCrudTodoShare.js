@@ -22,7 +22,7 @@ export function useFetchTodoShare(list_id) {
     // queryFn: () => getTodoList(id),
     queryFn: () => getTodoShareApi(list_id),
     onSuccess: (data) => {
-      console.log(data);
+//      console.log(data);
     },
     onError: (error) => {
       console.error("Error fetching Todo Share:", error);
@@ -54,7 +54,7 @@ export function useAddTodoShare(list_id) {
 
       // 3) build share payload and call addTodoShareApi
       const newShare = { list_id, share_to: user_id, share_level: 1 }; // include email if helpful
-      console.log(newShare);
+//      console.log(newShare);
       return addTodoShareApi(newShare);
     },
     onSuccess: () => {

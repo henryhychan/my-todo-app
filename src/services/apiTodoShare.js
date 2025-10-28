@@ -18,7 +18,7 @@ export async function getTodoShareApi(list_id) {
 }
 
 export async function updateTodoShareApi(todoShare) {
-    console.log(`updating todo share access ${JSON.stringify(todoShare)}`);
+//    console.log(`updating todo share access ${JSON.stringify(todoShare)}`);
     let query = supabase.from('todos_share')
             .update(todoShare).eq('id', todoShare.id);
 

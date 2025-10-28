@@ -12,14 +12,11 @@ function TodoShareRow({share}) {
 
     function handleChangeAccess(e) {
         e.preventDefault();
-//        console.log(`Change access for ${share.id}: ${Number(e.target.value)}`);
-        const data = {id: share.id, share_level: Number(e.target.value)};
-//        console.log(`Update share access for ${JSON.stringify(data)}`)
         updateTodoShare(data);
     }
 
-    function handleDeleteAccess() {
-        console.log(`Delete access for ${share.id}`);
+    function handleDeleteAccess(e) {
+        e.preventDefault();
         deleteTodoShare(share.id);
     }
 

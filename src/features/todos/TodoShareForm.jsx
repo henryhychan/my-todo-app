@@ -19,7 +19,7 @@ function TodoShareForm({ list_id, onCloseModal }) {
 
     function handleAdd(e) {
         e.preventDefault();
-        console.log(`${emailInput}`)
+//        console.log(`${emailInput}`)
 
       try {
         createTodoShare({ email: emailInput }); // or createTodoShare(email)

@@ -39,7 +39,7 @@ export function useFetchTodoShareItems() {
     // const id = searchParams.get("todoList");
     // const id = params.get("list_id");
 
-    console.log(`Fetch TodoList ID ${list_id} by User ID: ${user?.user.id}`);
+//    console.log(`Fetch TodoList ID ${list_id} by User ID: ${user?.user.id}`);
 
     // This hook can be used to fetch Todo List data
     const {isPending: isLoading, data: todos_items, error} = useQuery({
